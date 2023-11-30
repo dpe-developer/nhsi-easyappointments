@@ -1,0 +1,2 @@
+ALTER TABLE `ea_users` ADD `applicant_type` VARCHAR(255) NULL DEFAULT NULL AFTER `zip_code`, ADD `client_id_reference_number` VARCHAR(255) NULL DEFAULT NULL AFTER `applicant_type`, ADD `visa_category` VARCHAR(255) NULL DEFAULT NULL AFTER `client_id_reference_number`, ADD `visa_type` VARCHAR(255) NULL DEFAULT NULL AFTER `visa_category`;
+ALTER TABLE `ea_users` ADD `date_of_birth` DATE NULL DEFAULT NULL AFTER `last_name`, ADD `sex` VARCHAR(255) NULL DEFAULT NULL AFTER `date_of_birth`;
