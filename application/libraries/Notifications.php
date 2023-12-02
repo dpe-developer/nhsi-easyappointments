@@ -97,7 +97,11 @@ class Notifications {
                     $settings,
                     $customer_title,
                     $customer_message,
-                    $customer_link, new Email($customer['email']), new Text($ics_stream), $customer['timezone']);
+                    $customer_link,
+                    new Email($customer['email']),
+                    new Text($ics_stream),
+                    $customer['timezone']
+                );
             }
 
             $send_provider = filter_var(
