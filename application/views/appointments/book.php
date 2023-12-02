@@ -460,11 +460,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="proof-of-payment">Proof of Payment</label>
-                                <input type="file" class="form-control-file required" id="proof-of-payment">
+                                <input type="file" class="form-control-file required" id="proof-of-payment" accept="image/*">
                             </div>
                             <div class="form-group">
                                 <label for="proof-of-identity">Proof of Identity</label>
-                                <input type="file" class="form-control-file required" id="proof-of-identity">
+                                <input type="file" class="form-control-file required" id="proof-of-identity" accept="image/*">
                             </div>
                         </div>
                         <!-- END OF Custom Fields -->
