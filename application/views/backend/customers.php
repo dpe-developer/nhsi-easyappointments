@@ -25,10 +25,32 @@
         BackendCustomers.initialize(true);
     });
 </script>
+<script>
+    $(function(){
+        $(document).on('click', 'a[data-toggle="view-image-modal"]', function(){
+            let imageLinkBtn = $(this);
+            let linkHref =imageLinkBtn.data('href');
+            $.ajax({
+                type: "HEAD",
+                url: linkHref,
+                success: function(data, textStatus, jqXHR) {
+                    if (jqXHR.status === 404) {
+                        alert('No Upload');
+                    } else {
+                        window.open(linkHref, "_blank");
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert('No Upload');
+                }
+            });
+        });
+    })
+</script>
 
 <div class="container-fluid backend-page" id="customers-page">
     <div class="row" id="customers">
-        <div id="filter-customers" class="filter-records col col-12 col-md-5">
+        <div id="filter-customers" class="filter-records col-md-5">
             <form class="mb-4">
                 <div class="input-group">
                     <input type="text" class="key form-control">
@@ -52,7 +74,7 @@
             <div class="results"></div>
         </div>
 
-        <div class="record-details col-12 col-md-7">
+        <div class="record-details col">
             <div class="btn-toolbar mb-4">
                 <div id="add-edit-delete-group" class="btn-group">
                     <?php if ($privileges[PRIV_CUSTOMERS]['add'] === TRUE): ?>
@@ -92,122 +114,161 @@
             <input id="customer-id" type="hidden">
 
             <div class="row">
-                <div class="col-12 col-md-6" style="margin-left: 0;">
+                <div class="col-12 col-md-8" style="margin-left: 0;">
                     <h3><?= lang('details') ?></h3>
-
                     <div id="form-message" class="alert" style="display:none;"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label" for="first-name">
+                                    <?= lang('first_name') ?>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input id="first-name" class="form-control required">
+                            </div>
 
-                    <div class="form-group">
-                        <label class="control-label" for="first-name">
-                            <?= lang('first_name') ?>
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input id="first-name" class="form-control required">
-                    </div>
+                            <div class="form-group">
+                                <label class="control-label" for="last-name">
+                                    <?= lang('last_name') ?>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input id="last-name" class="form-control required">
+                            </div>
 
-                    <div class="form-group">
-                        <label class="control-label" for="last-name">
-                            <?= lang('last_name') ?>
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input id="last-name" class="form-control required">
-                    </div>
+                            <div class="form-group">
+                                <label class="control-label" for="email">
+                                    <?= lang('email') ?>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input id="email" class="form-control required">
+                            </div>
 
-                    <div class="form-group">
-                        <label class="control-label" for="email">
-                            <?= lang('email') ?>
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input id="email" class="form-control required">
-                    </div>
+                            <div class="form-group">
+                                <label class="control-label" for="phone-number">
+                                    <?= lang('phone_number') ?>
+                                    <?= $require_phone_number === '1' ? '<span class="text-danger">*</span>' : ''; ?></label>
+                                <input id="phone-number" class="form-control
+                                    <?= $require_phone_number === '1' ? 'required' : '' ?>">
+                            </div>
 
-                    <div class="form-group">
-                        <label class="control-label" for="phone-number">
-                            <?= lang('phone_number') ?>
-                            <?= $require_phone_number === '1' ? '<span class="text-danger">*</span>' : ''; ?></label>
-                        <input id="phone-number" class="form-control
-                            <?= $require_phone_number === '1' ? 'required' : '' ?>">
-                    </div>
+                            <div class="form-group">
+                                <label class="control-label" for="address">
+                                    <?= lang('address') ?>
+                                </label>
+                                <input id="address" class="form-control">
+                            </div>
 
-                    <div class="form-group">
-                        <label class="control-label" for="address">
-                            <?= lang('address') ?>
-                        </label>
-                        <input id="address" class="form-control">
-                    </div>
+                            <div class="form-group">
+                                <label class="control-label" for="city">
+                                    <?= lang('city') ?>
 
-                    <div class="form-group">
-                        <label class="control-label" for="city">
-                            <?= lang('city') ?>
+                                </label>
+                                <input id="city" class="form-control">
+                            </div>
 
-                        </label>
-                        <input id="city" class="form-control">
-                    </div>
+                            <div class="form-group">
+                                <label class="control-label" for="zip-code">
+                                    <?= lang('zip_code') ?>
+                                </label>
+                                <input id="zip-code" class="form-control">
+                            </div>
 
-                    <div class="form-group">
-                        <label class="control-label" for="zip-code">
-                            <?= lang('zip_code') ?>
-                        </label>
-                        <input id="zip-code" class="form-control">
-                    </div>
+                            <div class="form-group">
+                                <label class="control-label" for="notes">
+                                    <?= lang('notes') ?>
+                                </label>
+                                <textarea id="notes" rows="4" class="form-control"></textarea>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="language">
-                            <?= lang('language') ?>
-                            <span class="text-danger">*</span>
-                        </label>
-                        <select id="language" class="form-control required"></select>
-                    </div>
+                            <div class="form-group">
+                                <label for="language">
+                                    <?= lang('language') ?>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <select id="language" class="form-control required"></select>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="timezone">
-                            <?= lang('timezone') ?>
-                            <span class="text-danger">*</span>
-                        </label>
-                        <?= render_timezone_dropdown('id="timezone" class="form-control required"') ?>
-                    </div>
+                            <div class="form-group">
+                                <label for="timezone">
+                                    <?= lang('timezone') ?>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <?= render_timezone_dropdown('id="timezone" class="form-control required"') ?>
+                            </div>
+                        </div>
 
-                    <!-- Custom Fields -->
-                    <div class="form-group">
-                        <label for="applicant-type">Applicant Type <span class="text-danger">*</span></label>
-                        <select id="applicant-type" class="required form-control">
-                            <option value=""></option>
-                            <option value="Not Applicable">Not Applicable</option>
-                            <option value="CANADA">CANADA</option>
-                            <option value="AUSTRALIA">AUSTRALIA</option>
-                            <option value="NEW ZEALAND">NEW ZEALAND</option>
-                        </select>
-                    </div>
-                    <div class="form-group client-id-reference-number-container">
-                        <label for="client-id-reference-number" class="control-label">
-                            IME/UCI #; HAP ID; NZER/NZHR
-                        </label>
-                        <input id="client-id-reference-number" class="form-control" maxlength="120"/>
-                    </div>
-                    <div class="form-group visa-category-container">
-                        <label for="visa-category" class="control-label">
-                            Visa category
-                        </label>
-                        <input id="visa-category" class="form-control" maxlength="120"/>
-                    </div>
-                    <div class="form-group visa-type-container">
-                        <label for="visa-type" class="control-label">
-                            Type of visa
-                        </label>
-                        <input id="visa-type" class="form-control" maxlength="120"/>
-                    </div>
-                    <!-- END OF Custom Fields -->
-
-                    <div class="form-group">
-                        <label class="control-label" for="notes">
-                            <?= lang('notes') ?>
-
-                        </label>
-                        <textarea id="notes" rows="4" class="form-control"></textarea>
+                        <div class="col-md-6">
+                            <!-- Custom Fields -->
+                            <div class="form-group">
+                                <label for="sex" class="control-label">
+                                    Sex
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sex" id="sex-male" value="male">
+                                    <label class="form-check-label" for="sex-male">
+                                        Male
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sex" id="sex-female" value="female">
+                                    <label class="form-check-label" for="sex-female">
+                                        Female
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="birth-date" class="control-label">
+                                    Birth Date
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="date" id="birth-date" class="required form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="passport-number" class="control-label">
+                                    Passport Number
+                                </label>
+                                <input id="passport-number" class="form-control" maxlength="120"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="passport-expiry-date" class="control-label">
+                                    Passport Expiry Date
+                                </label>
+                                <input type="date" id="passport-expiry-date" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="applicant-type">Applicant Type <span class="text-danger">*</span></label>
+                                <select id="applicant-type" class="required form-control">
+                                    <option value=""></option>
+                                    <option value="Not Applicable">Not Applicable</option>
+                                    <option value="CANADA">CANADA</option>
+                                    <option value="AUSTRALIA">AUSTRALIA</option>
+                                    <option value="NEW ZEALAND">NEW ZEALAND</option>
+                                </select>
+                            </div>
+                            <div class="form-group client-id-reference-number-container">
+                                <label for="client-id-reference-number" class="control-label">
+                                    IME/UCI #; HAP ID; NZER/NZHR
+                                </label>
+                                <input id="client-id-reference-number" class="form-control" maxlength="120"/>
+                            </div>
+                            <div class="form-group visa-category-container">
+                                <label for="visa-category" class="control-label">
+                                    Visa category
+                                </label>
+                                <input id="visa-category" class="form-control" maxlength="120"/>
+                            </div>
+                            <div class="form-group visa-type-container">
+                                <label for="visa-type" class="control-label">
+                                    Type of visa
+                                </label>
+                                <input id="visa-type" class="form-control" maxlength="120"/>
+                            </div>
+                            <!-- END OF Custom Fields -->
+                        </div>
                     </div>
                 </div>
-
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-4">
                     <h3><?= lang('appointments') ?></h3>
                     <div id="customer-appointments" class="card bg-light border-light"></div>
                     <div id="appointment-details" class="card bg-light border-light d-none"></div>

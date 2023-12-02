@@ -25,6 +25,11 @@ window.FrontendBookApi = window.FrontendBookApi || {};
     var unavailableDatesBackup;
     var selectedDateStringBackup;
     var processingUnavailabilities = false;
+    var monthNames = [
+        'January', 'February', 'March', 'April',
+        'May', 'June', 'July', 'August',
+        'September', 'October', 'November', 'December'
+    ];
 
     /**
      * Get Available Hours
@@ -36,6 +41,8 @@ window.FrontendBookApi = window.FrontendBookApi || {};
      */
     exports.getAvailableHours = function (selectedDate) {
         $('#available-hours').empty();
+        var getSelectedDate = Date.parse(selectedDate);
+        $('#available-hours-loading-info').text('Loading available Hours for ' + monthNames[getSelectedDate.getMonth()] + ' ' + getSelectedDate.getDate() +'. Please Wait...')
 
         // Find the selected service duration (it is going to be send within the "data" object).
         var serviceId = $('#select-service').val();
@@ -69,6 +76,7 @@ window.FrontendBookApi = window.FrontendBookApi || {};
 
         $.post(url, data)
             .done(function (response) {
+                $('#available-hours-loading-info').text('');
                 // The response contains the available hours for the selected provider and
                 // service. Fill the available hours div with response data.
                 if (response.length > 0) {
@@ -156,19 +164,33 @@ window.FrontendBookApi = window.FrontendBookApi || {};
             }
         }
 
-        var formData = JSON.parse($('input[name="post_data"]').val());
+        // var formData = JSON.parse($('input[name="post_data"]').val());
 
-        var data = {
+        // Custom Field (File Upload)
+        var formData = new FormData();
+        var proofOfPayment = $('#proof-of-payment')[0];
+        var proofOfIdentity = $('#proof-of-identity')[0];
+        formData.append("proof_of_payment_file", proofOfPayment.files[0]);
+        formData.append("proof_of_identity_file", proofOfIdentity.files[0]);
+        formData.append("post_data", $('input[name="post_data"]').val());
+        formData.append("post_data_json", JSON.parse($('input[name="post_data"]').val()));
+        formData.append("csrfToken", GlobalVariables.csrfToken);
+        console.log($('input[name="post_data"]').val());
+        console.log(JSON.parse($('input[name="post_data"]').val()));
+        
+        /* var data = {
             csrfToken: GlobalVariables.csrfToken,
-            post_data: formData
-        };
-
+            post_data: formData,
+        }; */
+        
         if ($captchaText.length > 0) {
-            data.captcha = $captchaText.val();
+            formData.append("captcha", $captchaText.val());
+            // data.captcha = $captchaText.val();
         }
 
         if (GlobalVariables.manageMode) {
-            data.exclude_appointment_id = GlobalVariables.appointmentData.id;
+            formData.append("exclude_appointment_id", GlobalVariables.appointmentData.id);
+            // data.exclude_appointment_id = GlobalVariables.appointmentData.id;
         }
 
         var url = GlobalVariables.baseUrl + '/index.php/appointments/ajax_register_appointment';
@@ -178,8 +200,11 @@ window.FrontendBookApi = window.FrontendBookApi || {};
         $.ajax({
             url: url,
             method: 'post',
-            data: data,
-            dataType: 'json',
+            /* data: data,
+            dataType: 'json', */
+            data: formData,
+            contentType: false,
+            processData: false,
             beforeSend: function (jqxhr, settings) {
                 $layer
                     .appendTo('body')
@@ -193,8 +218,10 @@ window.FrontendBookApi = window.FrontendBookApi || {};
                         opacity: '0.5'
                     });
             }
+            
         })
             .done(function (response) {
+                // console.log(response);
                 if (response.captcha_verification === false) {
                     $('#captcha-hint')
                         .text(EALang.captcha_is_wrong)
@@ -259,9 +286,18 @@ window.FrontendBookApi = window.FrontendBookApi || {};
             url: url,
             type: 'GET',
             data: data,
-            dataType: 'json'
+            dataType: 'json',
+            beforeSend: function(){
+                $('#calendar-loader').find('.overlay').removeClass('d-none');
+                var selectedDate = Date.parse(selectedDateString);
+                $('#available-hours').text('Loading available Dates for the month of ' + monthNames[selectedDate.getMonth()] + '. Please Wait...');
+            },
+            success: function(){
+                $('#calendar-loader').find('.overlay').addClass('d-none');
+            }
         })
             .done(function (response) {
+                $('#calendar-loader').find('.overlay').addClass('d-none');
                 unavailableDatesBackup = response;
                 selectedDateStringBackup = selectedDateString;
                 applyUnavailableDates(response, selectedDateString, true);
@@ -280,7 +316,6 @@ window.FrontendBookApi = window.FrontendBookApi || {};
         // Select first enabled date.
         var selectedDate = Date.parse(selectedDateString);
         var numberOfDays = moment(selectedDate).daysInMonth();
-
         if (setDate && !GlobalVariables.manageMode) {
             for (var i = 1; i <= numberOfDays; i++) {
                 var currentDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), i);

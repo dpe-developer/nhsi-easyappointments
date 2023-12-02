@@ -619,13 +619,24 @@ window.FrontendBook = window.FrontendBook || {};
             address: $('#address').val(),
             city: $('#city').val(),
             zip_code: $('#zip-code').val(),
+            notes: $('#notes').val(),
+            timezone: $('#select-timezone').val(),
+            // Custom Fields
+            sex: $('input[name="sex"]:checked').val(),
+            birth_date: $('#birth-date').val(),
+            passport_number: $('#passport-number').val(),
+            passport_expiry_date: $('#passport-expiry-date').val(),
             applicant_type: $('#applicant-type').val(),
             client_id_reference_number: $('#client-id-reference-number').val(),
             visa_category: $('#visa-category').val(),
-            visa_type: $('#visa-type').val(),
-            notes: $('#notes').val(),
-            timezone: $('#select-timezone').val()
+            visa_type: $('#visa-type').val()
         };
+        
+        /* data.file_upload = {
+            // Custom Fields
+            proof_of_payment: $('#proof-of-payment').val(),
+            proof_of_identity: $('#proof-of-identity').val()
+        } */
 
         data.appointment = {
             start_datetime: $('#select-date').datepicker('getDate').toString('yyyy-MM-dd')
@@ -634,7 +645,9 @@ window.FrontendBook = window.FrontendBook || {};
             notes: $('#notes').val(),
             is_unavailable: false,
             id_users_provider: $('#select-provider').val(),
-            id_services: $('#select-service').val()
+            id_services: $('#select-service').val(),
+            proof_of_payment: $('#proof-of-payment').val(),
+            proof_of_identity: $('#proof-of-identity').val()
         };
 
         data.manage_mode = FrontendBook.manageMode;

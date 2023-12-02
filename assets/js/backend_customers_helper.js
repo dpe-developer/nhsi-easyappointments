@@ -126,13 +126,18 @@
                 address: $('#address').val(),
                 city: $('#city').val(),
                 zip_code: $('#zip-code').val(),
+                notes: $('#notes').val(),
+                timezone: $('#timezone').val(),
+                language: $('#language').val() || 'english',
+                // Custom Fields
+                sex: ($('#sex-male:checked').length > 0 ? 'male' : ($('#sex-female:checked').length > 0 ? 'female' : null)),
+                birth_date: $('#birth-date').val(),
+                passport_number: $('#passport-number').val(),
+                passport_expiry_date: $('#passport-expiry-date').val(),
                 applicant_type: $('#applicant-type').val(),
                 client_id_reference_number: $('#client-id-reference-number').val(),
                 visa_category: $('#visa-category').val(),
-                visa_type: $('#visa-type').val(),
-                notes: $('#notes').val(),
-                timezone: $('#timezone').val(),
-                language: $('#language').val() || 'english'
+                visa_type: $('#visa-type').val()
             };
 
             if ($('#customer-id').val()) {
@@ -262,6 +267,7 @@
         $('.record-details')
             .find('input, select, textarea')
             .val('')
+            .prop('checked', false)
             .prop('disabled', true);
         $('.record-details #timezone').val('UTC');
 
@@ -286,7 +292,7 @@
      * @param {Object} customer Contains the customer record data.
      */
     CustomersHelper.prototype.display = function (customer) {
-        console.log(customer);
+        $('input[name="sex"]').prop('checked', false);
         $('#customer-id').val(customer.id);
         $('#first-name').val(customer.first_name);
         $('#last-name').val(customer.last_name);
@@ -299,6 +305,10 @@
         $('#timezone').val(customer.timezone);
         $('#language').val(customer.language || 'english');
         // Custom Fields
+        $('#sex-' + customer.sex).prop('checked', true);
+        $('#birth-date').val(customer.birth_date);
+        $('#passport-number').val(customer.passport_number);
+        $('#passport-expiry-date').val(customer.passport_expiry_date);
         $('#applicant-type').val(customer.applicant_type);
         let clientIDReferenceNumber = "IME/UCI #; HAP ID; NZER/NZHR";
         switch (customer.applicant_type) {
@@ -379,10 +389,13 @@
 
                     $('<small/>', {
                         'text': GlobalVariables.timezones[appointment.provider.timezone]
-                    })
+                    }),
+                    $('<br/>')
                 ]
-            })
-                .appendTo('#customer-appointments');
+            }).appendTo('#customer-appointments');
+            $('.appointment-row[data-id="'+appointment.id+'"]').append('<a href="javascript:void(0)" data-toggle="view-image-modal" data-title="Proof of Payment" data-href="'+GlobalVariables.baseUrl+'/storage/uploads/'+appointment.proof_of_payment+'">VIEW Proof of Payment</a><br/>');
+            $('.appointment-row[data-id="'+appointment.id+'"]').append('<a href="javascript:void(0)" data-toggle="view-image-modal" data-title="Proof of Identity" data-href="'+GlobalVariables.baseUrl+'/storage/uploads/'+appointment.proof_of_identity+'">VIEW Proof of Identity</a>');
+
         });
     };
 

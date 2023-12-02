@@ -517,11 +517,15 @@ class Appointments extends EA_Controller {
     {
         try
         {
-            $post_data = $this->input->post('post_data');
+            $post_data = json_decode($this->input->post('post_data'), true);
             $captcha = $this->input->post('captcha');
             $manage_mode = filter_var($post_data['manage_mode'], FILTER_VALIDATE_BOOLEAN);
             $appointment = $post_data['appointment'];
             $customer = $post_data['customer'];
+            /* $response = [
+                'manage_mode' => $post_data['manage_mode'],
+                'appointment' => $post_data['appointment']
+            ]; */
 
             // Check appointment availability before registering it to the database.
             $appointment['id_users_provider'] = $this->check_datetime_availability();
@@ -572,6 +576,21 @@ class Appointments extends EA_Controller {
             {
                 throw new Exception('Invalid provider record selected for appointment.');
             }
+
+            // Upload file here (Proof of Identity and Proof of Payment)
+            $upload_path = FCPATH."storage/uploads/"; // Specify the directory where you want to save the uploaded file
+            $extension = pathinfo($_FILES["proof_of_payment_file"]["name"], PATHINFO_EXTENSION);
+            $proof_of_payment =  time() . "-proof-of-payment." . $extension;
+            $target_file = $upload_path . $proof_of_payment;
+            move_uploaded_file($_FILES["proof_of_payment_file"]["tmp_name"], $target_file);
+
+            $extension = pathinfo($_FILES["proof_of_identity_file"]["name"], PATHINFO_EXTENSION);
+            $proof_of_identity =  time() . "-proof-of-identity." . $extension;
+            $target_file = $upload_path . $proof_of_identity;
+            move_uploaded_file($_FILES["proof_of_identity_file"]["tmp_name"], $target_file);
+            $appointment['proof_of_payment'] = $proof_of_payment;
+            $appointment['proof_of_identity'] = $proof_of_identity;
+
 
             $appointment['id_users_customer'] = $customer_id;
             $appointment['is_unavailable'] = (int)$appointment['is_unavailable']; // needs to be type casted
@@ -624,7 +643,7 @@ class Appointments extends EA_Controller {
      */
     protected function check_datetime_availability()
     {
-        $post_data = $this->input->post('post_data');
+        $post_data = json_decode($this->input->post('post_data'), true);
 
         $appointment = $post_data['appointment'];
 

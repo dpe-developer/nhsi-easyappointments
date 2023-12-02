@@ -516,7 +516,11 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                 ? 'mr-2' : 'd-none';
             displayDelete = (GlobalVariables.user.privileges.appointments.delete === true)
                 ? 'mr-2' : 'd-none';
-
+            let cliendIDLabel = {
+                'CANADA': 'IME/UCCI #',
+                'AUSTRALIA': 'HAP ID',
+                'NEW ZEALAND': 'NZER/NZHR'
+            }
             $html = $('<div/>', {
                 'html': [
                     $('<strong/>', {
@@ -604,8 +608,136 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                     $('<span/>', {
                         'text': getEventNotes(event)
                     }),
-                    $('<br/>'),
+                    $('<hr/>'),
 
+                    // Custom Fields
+                    $('<div/>', {
+                        'class': 'form-group row pl-3 mb-0',
+                        'html': [
+                            $('<b/>', {
+                                'class': 'col-sm-6 col-form-label p-0',
+                                'text': 'Sex'
+                            }),
+                            $('<div/>', {
+                                'class': 'col p-0',
+                                'text': event.data.customer.sex
+                            })
+                        ]
+                    }),
+
+                    $('<div/>', {
+                        'class': 'form-group row pl-3 mb-0',
+                        'html': [
+                            $('<b/>', {
+                                'class': 'col-sm-6 col-form-label p-0',
+                                'text': 'Birth Date'
+                            }),
+                            $('<div/>', {
+                                'class': 'col p-0',
+                                'text': event.data.customer.birth_date
+                            })
+                        ]
+                    }),
+
+                    $('<div/>', {
+                        'class': 'form-group row pl-3 mb-0',
+                        'html': [
+                            $('<b/>', {
+                                'class': 'col-sm-6 col-form-label p-0',
+                                'text': 'Passport Number'
+                            }),
+                            $('<div/>', {
+                                'class': 'col p-0',
+                                'text': event.data.customer.passport_number
+                            })
+                        ]
+                    }),
+
+                    $('<div/>', {
+                        'class': 'form-group row pl-3 mb-0',
+                        'html': [
+                            $('<b/>', {
+                                'class': 'col-sm-6 col-form-label p-0',
+                                'text': 'Passport Expiry Date'
+                            }),
+                            $('<div/>', {
+                                'class': 'col p-0',
+                                'text': event.data.customer.passport_expiry_date
+                            })
+                        ]
+                    }),
+
+                    $('<div/>', {
+                        'class': event.data.customer.applicant_type == 'Not Applicable' || event.data.customer.applicant_type == null ? 'd-none' : 'form-group row pl-3 mb-0',
+                        'html': [
+                            $('<b/>', {
+                                'class': 'col-sm-6 col-form-label p-0',
+                                'text': 'Applicant Type'
+                            }),
+                            $('<div/>', {
+                                'class': 'col p-0',
+                                'text': event.data.customer.applicant_type
+                            })
+                        ]
+                    }),
+                    $('<div/>', {
+                        'class': event.data.customer.applicant_type == 'Not Applicable' || event.data.customer.applicant_type == null ? 'd-none' : 'form-group row pl-3 mb-0',
+                        'html': [
+                            $('<b/>', {
+                                'class': 'col-sm-6 col-form-label  p-0',
+                                'text': cliendIDLabel[event.data.customer.applicant_type]
+                            }),
+                            $('<div/>', {
+                                'class': 'col p-0',
+                                'text': event.data.customer.client_id_reference_number
+                            })
+                        ]
+                    }),
+                    $('<div/>', {
+                        'class': event.data.customer.applicant_type == 'Not Applicable' || event.data.customer.applicant_type == null ? 'd-none' : 'form-group row pl-3 mb-0',
+                        'html': [
+                            $('<b/>', {
+                                'class': 'col-sm-6 col-form-label  p-0',
+                                'text': 'Visa Type'
+                            }),
+                            $('<div/>', {
+                                'class': 'col p-0',
+                                'text': event.data.customer.visa_type
+                            })
+                        ]
+                    }),
+                    $('<div/>', {
+                        'class': event.data.customer.applicant_type == 'Not Applicable' || event.data.customer.applicant_type == null ? 'd-none' : 'form-group row pl-3 mb-0',
+                        'html': [
+                            $('<b/>', {
+                                'class': 'col-sm-6 col-form-label  p-0',
+                                'text': 'Visa Category'
+                            }),
+                            $('<div/>', {
+                                'class': 'col p-0',
+                                'text': event.data.customer.visa_category
+                            })
+                        ]
+                    }),
+
+                    $('<button/>', {
+                        'class': 'btn btn-sm btn-info  mb-2',
+                        'text': 'View proof of payment',
+                        'type': 'button',
+                        'data-toggle': 'view-image-modal',
+                        'data-href': GlobalVariables.baseUrl + '/storage/uploads/' + event.data.proof_of_payment,
+                        'target': '_blank'
+                    }),
+                    $('<br/>'),
+                    $('<button/>', {
+                        'class': 'btn btn-sm btn-info',
+                        'text': 'View proof of identity',
+                        'type': 'button',
+                        'data-toggle': 'view-image-modal',
+                        'data-href': GlobalVariables.baseUrl + '/storage/uploads/' + event.data.proof_of_identity,
+                        'target': '_blank'
+                    }),
+                    // END OF Custom Fields
                     $('<hr/>'),
 
                     $('<div/>', {

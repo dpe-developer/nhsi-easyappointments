@@ -38,6 +38,29 @@
         BackendCalendar.initialize(GlobalVariables.calendarView);
     });
 </script>
+<script>
+    $(function(){
+        $(document).on('click', '[data-toggle="view-image-modal"]', function(e){
+            let imageLinkBtn = $(this);
+            let linkHref =imageLinkBtn.data('href');
+            $.ajax({
+                type: "HEAD",
+                url: linkHref,
+                success: function(data, textStatus, jqXHR) {
+                    if (jqXHR.status === 404) {
+                        alert('No Upload');
+                    } else {
+                        window.open(linkHref, "_blank");
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert('No Upload');
+                }
+            });
+            e.prevetdDefault
+        });
+    })
+</script>
 
 <div class="container-fluid backend-page" id="calendar-page">
     <div class="row" id="calendar-toolbar">

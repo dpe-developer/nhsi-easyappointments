@@ -19,6 +19,37 @@
 
     <script src="<?= asset_url('assets/ext/fontawesome/js/fontawesome.min.js') ?>"></script>
     <script src="<?= asset_url('assets/ext/fontawesome/js/solid.min.js') ?>"></script>
+    <style>
+        .card > .overlay,
+        .card > .loading-img,
+        .overlay-wrapper > .overlay,
+        .overlay-wrapper > .loading-img,
+        .info-box > .overlay,
+        .info-box > .loading-img,
+        .small-box > .overlay,
+        .small-box > .loading-img {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        }
+
+        .card .overlay,
+        .overlay-wrapper .overlay,
+        .info-box .overlay,
+        .small-box .overlay {
+        border-radius: 0.25rem;
+        -ms-flex-align: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.7);
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: center;
+        justify-content: center;
+        z-index: 50;
+        }
+    </style>
 </head>
 
 <body>
@@ -235,6 +266,11 @@
                         <hr>
 
                         <div class="col-12 col-md-6">
+                            <div id="calendar-loader" class="overlay-wrapper">
+                                <div class="overlay d-none">
+                                    <p>LOADING ...</p>
+                                </div>
+                            </div>
                             <div id="select-date"></div>
                         </div>
 
@@ -245,7 +281,9 @@
                                     <?= render_timezone_dropdown('id="select-timezone" class="form-control" value="UTC"'); ?>
                                 </div>
 
-                                <div id="available-hours"></div>
+                                <p id="available-hours-loading-info"></p>
+                                <div id="available-hours">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -330,19 +368,52 @@
                                 </label>
                                 <input type="text" id="zip-code" class="form-control" maxlength="120"/>
                             </div>
+                            <div class="form-group">
+                                <label for="notes" class="control-label">
+                                    <?= lang('notes') ?>
+                                </label>
+                                <textarea id="notes" maxlength="500" class="form-control" rows="4"></textarea>
+                            </div>
                         </div>
-
+                        <!-- Custom Fields -->
                         <div class="col-md-6">
-                            <!-- <div class="form-group">
-                                <strong>Please fill out the following data where applicable.</strong><br>
-                                <i>
-                                    <ul>    
-                                        <li>FOR CANADA APPLICANTS,<br>If you received a letter from the Embassy, Type in IME/UCI # below:<br>If UPFRONT medical, type in your visa category (Student, Visitor, Worker) below:</li><br>
-                                        <li>FOR AUSTRALIA APPLICANTS,   type in HAP ID below:</li><br>
-                                        <li>FOR NEW ZEALAND APPLICANTS, type in NZER/NZHR:<br>If UPFRONT MEDICAL, type in your visa catergory and visa type below:</li>
-                                    </ul>
-                                </i>
-                            </div> -->
+                            <div class="form-group">
+                                <label for="sex" class="control-label">
+                                    Sex
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sex" id="sex-male" value="male">
+                                    <label class="form-check-label" for="sex-male">
+                                        Male
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sex" id="sex-female" value="female">
+                                    <label class="form-check-label" for="sex-female">
+                                        Female
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="birth-date" class="control-label">
+                                    Birth Date
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="date" id="birth-date" class="required form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="passport-number" class="control-label">
+                                    Passport Number
+                                </label>
+                                <input id="passport-number" class="form-control" maxlength="120"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="passport-expiry-date" class="control-label">
+                                    Passport Expiry Date
+                                </label>
+                                <input type="date" id="passport-expiry-date" class="form-control"/>
+                            </div>
                             <div class="form-group">
                                 <label for="applicant-type">Applicant Type <span class="text-danger">*</span></label>
                                 <select id="applicant-type" class="required form-control">
@@ -388,12 +459,15 @@
                                 <input id="visa-type" class="form-control" maxlength="120"/>
                             </div>
                             <div class="form-group">
-                                <label for="notes" class="control-label">
-                                    <?= lang('notes') ?>
-                                </label>
-                                <textarea id="notes" maxlength="500" class="form-control" rows="4"></textarea>
+                                <label for="proof-of-payment">Proof of Payment</label>
+                                <input type="file" class="form-control-file required" id="proof-of-payment">
+                            </div>
+                            <div class="form-group">
+                                <label for="proof-of-identity">Proof of Identity</label>
+                                <input type="file" class="form-control-file required" id="proof-of-identity">
                             </div>
                         </div>
+                        <!-- END OF Custom Fields -->
                     </div>
                 </div>
 
@@ -478,6 +552,8 @@
                         </button>
                         <input type="hidden" name="csrfToken"/>
                         <input type="hidden" name="post_data"/>
+                        <!-- <input type="file" id="proof-of-payment-input"/> -->
+                        <!-- <input type="file" name="proof-of-identity-input"/> -->
                     </form>
                 </div>
             </div>
@@ -550,7 +626,8 @@
 <script src="<?= asset_url('assets/ext/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
 <script src="<?= asset_url('assets/ext/popper/popper.min.js') ?>"></script>
 <script src="<?= asset_url('assets/ext/tippy/tippy-bundle.umd.min.js') ?>"></script>
-<script src="<?= asset_url('assets/ext/datejs/date.min.js') ?>"></script>
+<!-- <script src="<?= asset_url('assets/ext/datejs/date.min.js') ?>"></script> -->
+<script src="<?= asset_url('assets/ext/datejs/date.js') ?>"></script>
 <script src="<?= asset_url('assets/ext/moment/moment.min.js') ?>"></script>
 <script src="<?= asset_url('assets/ext/moment/moment-timezone-with-data.min.js') ?>"></script>
 <script src="<?= asset_url('assets/js/frontend_book_api.js') ?>"></script>
