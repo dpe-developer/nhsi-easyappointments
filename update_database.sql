@@ -11,3 +11,6 @@ ADD `visa_type` VARCHAR(255) NULL DEFAULT NULL AFTER `visa_category`;
 ALTER TABLE `ea_appointments`
 ADD `proof_of_payment` LONGTEXT NULL DEFAULT NULL AFTER `notes`,
 ADD `proof_of_identity` LONGTEXT NULL DEFAULT NULL AFTER `proof_of_payment`;
+
+ALTER TABLE `ea_appointments`
+ADD `created_by` VARCHAR(255) NULL DEFAULT NULL AFTER `notes`;

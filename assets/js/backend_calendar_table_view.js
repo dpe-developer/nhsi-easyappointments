@@ -995,8 +995,7 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
 
             calendarEvents.push({
                 id: appointment.id,
-                title: appointment.service.name + ' - '
-                    + appointment.customer.first_name + ' '
+                title: appointment.customer.first_name + ' '
                     + appointment.customer.last_name,
                 start: moment(appointment.start_datetime),
                 end: moment(appointment.end_datetime),
@@ -1384,6 +1383,20 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                     $('<hr/>'),
 
                     // Custom Fields
+                    $('<div/>', {
+                        'class': event.data.created_by == '' || event.data.created_by == null ? 'd-none' :'form-group row pl-3 mb-0',
+                        'html': [
+                            $('<b/>', {
+                                'class': 'col-sm-6 col-form-label p-0',
+                                'text': 'Appointment created by'
+                            }),
+                            $('<div/>', {
+                                'class': 'col p-0',
+                                'text': event.data.created_by
+                            })
+                        ]
+                    }),
+                    
                     $('<div/>', {
                         'class': 'form-group row pl-3 mb-0',
                         'html': [

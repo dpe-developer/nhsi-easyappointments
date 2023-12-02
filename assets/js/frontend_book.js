@@ -646,6 +646,7 @@ window.FrontendBook = window.FrontendBook || {};
             is_unavailable: false,
             id_users_provider: $('#select-provider').val(),
             id_services: $('#select-service').val(),
+            created_by: $('#created-by').val(),
             proof_of_payment: $('#proof-of-payment').val(),
             proof_of_identity: $('#proof-of-identity').val()
         };

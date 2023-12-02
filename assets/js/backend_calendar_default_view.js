@@ -659,6 +659,19 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
 
                     // Custom Fields
                     $('<div/>', {
+                        'class': event.data.created_by == '' || event.data.created_by == null ? 'd-none' :'form-group row pl-3 mb-0',
+                        'html': [
+                            $('<b/>', {
+                                'class': 'col-sm-6 col-form-label p-0',
+                                'text': 'Appointment created by'
+                            }),
+                            $('<div/>', {
+                                'class': 'col p-0',
+                                'text': event.data.created_by
+                            })
+                        ]
+                    }),
+                    $('<div/>', {
                         'class': 'form-group row pl-3 mb-0',
                         'html': [
                             $('<b/>', {
@@ -1228,8 +1241,7 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                 response.appointments.forEach(function (appointment) {
                     var appointmentEvent = {
                         id: appointment.id,
-                        title: appointment.service.name + ' - '
-                            + appointment.customer.first_name + ' '
+                        title: appointment.customer.first_name + ' '
                             + appointment.customer.last_name,
                         start: moment(appointment.start_datetime),
                         end: moment(appointment.end_datetime),
@@ -1592,8 +1604,8 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
             height: getCalendarHeight(),
             editable: true,
             firstDay: firstWeekdayNumber,
-            slotDuration: '00:15:00', 
-            snapDuration: '00:15:00',
+            slotDuration: '00:06:00', 
+            snapDuration: '00:06:00',
             slotLabelInterval: '01:00',
             timeFormat: timeFormat,
             slotLabelFormat: slotTimeFormat,

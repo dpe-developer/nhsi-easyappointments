@@ -10,7 +10,8 @@
  * @link        https://easyappointments.org
  * @since       v1.0.0
  * ---------------------------------------------------------------------------- */
-
+require FCPATH.'vendor/autoload.php';
+use Intervention\Image\ImageManagerStatic as Image;
 /**
  * Appointments Controller
  *
@@ -578,18 +579,59 @@ class Appointments extends EA_Controller {
             }
 
             // Upload file here (Proof of Identity and Proof of Payment)
-            $upload_path = FCPATH."storage/uploads/"; // Specify the directory where you want to save the uploaded file
-            $extension = pathinfo($_FILES["proof_of_payment_file"]["name"], PATHINFO_EXTENSION);
-            $proof_of_payment =  time() . "-proof-of-payment." . $extension;
-            $target_file = $upload_path . $proof_of_payment;
-            move_uploaded_file($_FILES["proof_of_payment_file"]["tmp_name"], $target_file);
+            // $uploadPath = FCPATH."storage/uploads/"; // uplaod Directory
+            $uploadPath = "storage/uploads/"; // uplaod Directory
+            $appointment['proof_of_payment'] = null;
+            $appointment['proof_of_identity'] = null;
 
-            $extension = pathinfo($_FILES["proof_of_identity_file"]["name"], PATHINFO_EXTENSION);
-            $proof_of_identity =  time() . "-proof-of-identity." . $extension;
-            $target_file = $upload_path . $proof_of_identity;
-            move_uploaded_file($_FILES["proof_of_identity_file"]["tmp_name"], $target_file);
-            $appointment['proof_of_payment'] = $proof_of_payment;
-            $appointment['proof_of_identity'] = $proof_of_identity;
+            if (isset($_FILES['proof_of_payment_file'])) {
+                $uploadedFile = $_FILES['proof_of_payment_file'];
+                $fileName = $uploadedFile['name'];
+                $fileTmpName = $uploadedFile['tmp_name'];
+                $fileExt = pathinfo($fileName, PATHINFO_EXTENSION);
+
+                // Check if the file is an image
+                $mime = getimagesize($uploadedFile['tmp_name']);
+                if (in_array($mime['mime'], ['image/jpeg', 'image/png', 'image/git'])) {
+                    // Resize the image to fit within a 2 MB limit
+                    $targetSize = 2 * 1024 * 1024; // 2 MB in bytes
+                    $resizedImage = Image::make($uploadedFile['tmp_name'])->resize(800, 800, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    });
+            
+                    // Save the resized image
+                    $uploadFileName = time() . '-proof-of-payment.' . $fileExt;
+                    $resizedImagePath = $uploadPath . $uploadFileName;
+                    $resizedImage->save($resizedImagePath);
+                    $appointment['proof_of_payment'] = $uploadFileName;
+                }
+                // You can now move the resized image to your desired location or process it further.
+            }
+            if (isset($_FILES['proof_of_identity_file'])) {
+                $uploadedFile = $_FILES['proof_of_identity_file'];
+                $fileName = $uploadedFile['name'];
+                $fileTmpName = $uploadedFile['tmp_name'];
+                $fileExt = pathinfo($fileName, PATHINFO_EXTENSION);
+
+                // Check if the file is an image
+                $mime = getimagesize($uploadedFile['tmp_name']);
+                if (in_array($mime['mime'], ['image/jpeg', 'image/png', 'image/git'])) {
+                    // Resize the image to fit within a 2 MB limit
+                    $targetSize = 2 * 1024 * 1024; // 2 MB in bytes
+                    $resizedImage = Image::make($uploadedFile['tmp_name'])->resize(800, 800, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    });
+            
+                    // Save the resized image
+                    $uploadFileName = time() . '-proof-of-identity.' . $fileExt;
+                    $resizedImagePath = $uploadPath . $uploadFileName;
+                    $resizedImage->save($resizedImagePath);
+                    $appointment['proof_of_identity'] = $uploadFileName;
+                }
+                // You can now move the resized image to your desired location or process it further.
+            }
 
 
             $appointment['id_users_customer'] = $customer_id;

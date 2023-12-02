@@ -175,8 +175,6 @@ window.FrontendBookApi = window.FrontendBookApi || {};
         formData.append("post_data", $('input[name="post_data"]').val());
         formData.append("post_data_json", JSON.parse($('input[name="post_data"]').val()));
         formData.append("csrfToken", GlobalVariables.csrfToken);
-        console.log($('input[name="post_data"]').val());
-        console.log(JSON.parse($('input[name="post_data"]').val()));
         
         /* var data = {
             csrfToken: GlobalVariables.csrfToken,

@@ -322,6 +322,13 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label for="created-by" class="control-label">
+                                    Name of person creating appointment
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" id="created-by" class="required form-control" maxlength="100"/>
+                            </div>
+                            <div class="form-group">
                                 <label for="first-name" class="control-label">
                                     <?= lang('first_name') ?>
                                     <span class="text-danger">*</span>
