@@ -131,6 +131,53 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                 $dialog.find('#appointment-location').val(appointment.location);
                 $dialog.find('#appointment-notes').val(appointment.notes);
                 $dialog.find('#customer-notes').val(customer.notes);
+                // Custom Fields
+                $dialog.find('input[name="sex"]').prop('checked', false);
+                $dialog.find('#sex-' + customer.sex).prop('checked', true);
+                $dialog.find('#birth-date').val(customer.birth_date);
+                $dialog.find('#passport-number').val(customer.passport_number);
+                $dialog.find('#passport-expiry-date').val(customer.passport_expiry_date);
+                let applicantType = customer.applicant_type;
+                let clientIDReferenceNumber = "ID #";
+                $dialog.find('.client-id-reference-number-container').addClass('d-none');
+                $dialog.find('.visa-category-container').addClass('d-none');
+                $dialog.find('.visa-type-container').addClass('d-none');
+                $dialog.find('.canada-applicants-info').addClass('d-none');
+                $dialog.find('.australia-applicants-info').addClass('d-none');
+                $dialog.find('.new-zealand-applicants-info').addClass('d-none');
+                switch (applicantType) {
+                    case 'CANADA':
+                        clientIDReferenceNumber = 'IME/UCCI #';
+                        $dialog.find('.canada-applicants-info').removeClass('d-none');
+                        $dialog.find('.client-id-reference-number-container').removeClass('d-none');
+                        $dialog.find('.visa-category-container').removeClass('d-none');
+                        $dialog.find('.visa-type-container').removeClass('d-none');
+                        break;
+                    case 'AUSTRALIA':
+                        clientIDReferenceNumber = 'HAP ID';
+                        $dialog.find('.australia-applicants-info').removeClass('d-none');
+                        $dialog.find('.client-id-reference-number-container').removeClass('d-none');
+                        break;
+                    case 'NEW ZEALAND':
+                        clientIDReferenceNumber = 'NZER/NZHR';
+                        $dialog.find('.new-zealand-applicants-info').removeClass('d-none');
+                        $dialog.find('.client-id-reference-number-container').removeClass('d-none');
+                        $dialog.find('.visa-category-container').removeClass('d-none');
+                        $dialog.find('.visa-type-container').removeClass('d-none');
+                        break;
+                
+                    default:
+                        $dialog.find('.client-id-reference-number-container').addClass('d-none');
+                        $dialog.find('.visa-category-container').addClass('d-none');
+                        $dialog.find('.visa-type-container').addClass('d-none');
+                        break;
+                }
+                $dialog.find('label[for="client-id-reference-number"]').text(clientIDReferenceNumber);
+                $dialog.find('#applicant-type').val(applicantType);
+                $dialog.find('#client-id-reference-number').val(customer.client_id_reference_number);
+                $dialog.find('#visa-category').val(customer.visa_category);
+                $dialog.find('#visa-type').val(customer.visa_type);
+                // END OF Custom Fields
                 $dialog.modal('show');
             } else {
                 var unavailable = lastFocusedEventData.data;
@@ -721,7 +768,7 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                     }),
 
                     $('<button/>', {
-                        'class': 'btn btn-sm btn-info  mb-2',
+                        'class': event.data.proof_of_payment == null ? 'd-none' : 'btn btn-sm btn-info mb-2',
                         'text': 'View proof of payment',
                         'type': 'button',
                         'data-toggle': 'view-image-modal',
@@ -730,7 +777,7 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                     }),
                     $('<br/>'),
                     $('<button/>', {
-                        'class': 'btn btn-sm btn-info',
+                        'class': event.data.proof_of_identity == null ? 'd-none' : 'btn btn-sm btn-info',
                         'text': 'View proof of identity',
                         'type': 'button',
                         'data-toggle': 'view-image-modal',

@@ -59,6 +59,45 @@
             });
             e.prevetdDefault
         });
+
+        $('#applicant-type').on('change', function(){
+            let applicantType = $(this).val();
+            let clientIDReferenceNumber = "ID #";
+            $('.client-id-reference-number-container').addClass('d-none');
+            $('.visa-category-container').addClass('d-none');
+            $('.visa-type-container').addClass('d-none');
+            $('.canada-applicants-info').addClass('d-none');
+            $('.australia-applicants-info').addClass('d-none');
+            $('.new-zealand-applicants-info').addClass('d-none');
+            switch (applicantType) {
+                case 'CANADA':
+                    clientIDReferenceNumber = 'IME/UCCI #';
+                    $('.canada-applicants-info').removeClass('d-none');
+                    $('.client-id-reference-number-container').removeClass('d-none');
+                    $('.visa-category-container').removeClass('d-none');
+                    $('.visa-type-container').removeClass('d-none');
+                    break;
+                case 'AUSTRALIA':
+                    clientIDReferenceNumber = 'HAP ID';
+                    $('.australia-applicants-info').removeClass('d-none');
+                    $('.client-id-reference-number-container').removeClass('d-none');
+                    break;
+                case 'NEW ZEALAND':
+                    clientIDReferenceNumber = 'NZER/NZHR';
+                    $('.new-zealand-applicants-info').removeClass('d-none');
+                    $('.client-id-reference-number-container').removeClass('d-none');
+                    $('.visa-category-container').removeClass('d-none');
+                    $('.visa-type-container').removeClass('d-none');
+                    break;
+            
+                default:
+                    $('.client-id-reference-number-container').addClass('d-none');
+                    $('.visa-category-container').addClass('d-none');
+                    $('.visa-type-container').addClass('d-none');
+                    break;
+            }
+            $('label[for="client-id-reference-number"]').text(clientIDReferenceNumber);
+        });
     })
 </script>
 
@@ -383,6 +422,104 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
+                        <!-- Custom Fields -->
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label for="sex" class="control-label">
+                                    Sex
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sex" id="sex-male" value="male">
+                                    <label class="form-check-label" for="sex-male">
+                                        Male
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sex" id="sex-female" value="female">
+                                    <label class="form-check-label" for="sex-female">
+                                        Female
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="birth-date" class="control-label">
+                                        Birth Date
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="date" id="birth-date" class="required form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="passport-number" class="control-label">
+                                        Passport Number
+                                    </label>
+                                    <input id="passport-number" class="form-control" maxlength="120"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="passport-expiry-date" class="control-label">
+                                        Passport Expiry Date
+                                    </label>
+                                    <input type="date" id="passport-expiry-date" class="form-control"/>
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label for="proof-of-payment">Proof of Payment</label>
+                                    <input type="file" class="form-control-file" id="proof-of-payment">
+                                </div>
+                                <div class="form-group">
+                                    <label for="proof-of-identity">Proof of Identity</label>
+                                    <input type="file" class="form-control-file" id="proof-of-identity">
+                                </div> -->
+                            </div>
+                            <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                    <label for="applicant-type">Applicant Type <span class="text-danger">*</span></label>
+                                    <select id="applicant-type" class="required form-control">
+                                        <option value=""></option>
+                                        <option value="Not Applicable">Not Applicable</option>
+                                        <option value="CANADA">CANADA</option>
+                                        <option value="AUSTRALIA">AUSTRALIA</option>
+                                        <option value="NEW ZEALAND">NEW ZEALAND</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <i class="canada-applicants-info d-none">
+                                        FOR CANADA APPLICANTS,
+                                        <br>
+                                        If you received a letter from the Embassy, type in IME/UCI # below:
+                                        <br>
+                                        If UPFRONT medical, type in your visa category (Student, Visitor, Worker) below:
+                                    </i>
+                                    <i class="australia-applicants-info d-none">
+                                        FOR AUSTRALIA APPLICANTS, type in HAP ID below:
+                                    </i>
+                                    <i class="new-zealand-applicants-info d-none">
+                                        FOR NEW ZEALAND APPLICANTS, type in NZER/NZHR:
+                                        <br>
+                                        If UPFRONT MEDICAL, type in your visa catergory and visa type below:
+                                    </i>
+                                </div>
+                                <div class="form-group client-id-reference-number-container d-none">
+                                    <label for="client-id-reference-number" class="control-label">
+                                    </label>
+                                    <input id="client-id-reference-number" class="form-control" maxlength="120"/>
+                                </div>
+                                <div class="form-group visa-category-container d-none">
+                                    <label for="visa-category" class="control-label">
+                                        Visa category
+                                    </label>
+                                    <input id="visa-category" class="form-control" maxlength="120"/>
+                                </div>
+                                <div class="form-group visa-type-container d-none">
+                                    <label for="visa-type" class="control-label">
+                                        Type of visa
+                                    </label>
+                                    <input id="visa-type" class="form-control" maxlength="120"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END OF Custom Fields -->
                     </fieldset>
                 </form>
             </div>

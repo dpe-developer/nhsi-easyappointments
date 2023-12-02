@@ -393,8 +393,8 @@
                     $('<br/>')
                 ]
             }).appendTo('#customer-appointments');
-            $('.appointment-row[data-id="'+appointment.id+'"]').append('<a href="javascript:void(0)" data-toggle="view-image-modal" data-title="Proof of Payment" data-href="'+GlobalVariables.baseUrl+'/storage/uploads/'+appointment.proof_of_payment+'">VIEW Proof of Payment</a><br/>');
-            $('.appointment-row[data-id="'+appointment.id+'"]').append('<a href="javascript:void(0)" data-toggle="view-image-modal" data-title="Proof of Identity" data-href="'+GlobalVariables.baseUrl+'/storage/uploads/'+appointment.proof_of_identity+'">VIEW Proof of Identity</a>');
+            $('.appointment-row[data-id="'+appointment.id+'"]').append('<a ' + (appointment.proof_of_payment == null ? 'class="d-none"' : '') + ' href="javascript:void(0)" data-toggle="view-image-modal" data-title="Proof of Payment" data-href="'+GlobalVariables.baseUrl+'/storage/uploads/'+appointment.proof_of_payment+'">VIEW Proof of Payment</a><br/>');
+            $('.appointment-row[data-id="'+appointment.id+'"]').append('<a ' + (appointment.proof_of_identity == null ? 'class="d-none"' : '') + ' href="javascript:void(0)" data-toggle="view-image-modal" data-title="Proof of Identity" data-href="'+GlobalVariables.baseUrl+'/storage/uploads/'+appointment.proof_of_identity+'">VIEW Proof of Identity</a>');
 
         });
     };

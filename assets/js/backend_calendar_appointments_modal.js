@@ -78,7 +78,16 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
                 address: $dialog.find('#address').val(),
                 city: $dialog.find('#city').val(),
                 zip_code: $dialog.find('#zip-code').val(),
-                notes: $dialog.find('#customer-notes').val()
+                notes: $dialog.find('#customer-notes').val(),
+                // Custom Fields
+                sex: $('input[name="sex"]:checked').val(),
+                birth_date: $('#birth-date').val(),
+                passport_number: $('#passport-number').val(),
+                passport_expiry_date: $('#passport-expiry-date').val(),
+                applicant_type: $('#applicant-type').val(),
+                client_id_reference_number: $('#client-id-reference-number').val(),
+                visa_category: $('#visa-category').val(),
+                visa_type: $('#visa-type').val()
             };
 
             if ($dialog.find('#customer-id').val() !== '') {
@@ -218,6 +227,53 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
                 $('#city').val(customer.city);
                 $('#zip-code').val(customer.zip_code);
                 $('#customer-notes').val(customer.notes);
+                    // Custom Fields
+                    $('input[name="sex"]').prop('checked', false);
+                    $('#sex-' + customer.sex).prop('checked', true);
+                    $('#birth-date').val(customer.birth_date);
+                    $('#passport-number').val(customer.passport_number);
+                    $('#passport-expiry-date').val(customer.passport_expiry_date);
+                    let applicantType = customer.applicant_type;
+                    let clientIDReferenceNumber = "ID #";
+                    $('.client-id-reference-number-container').addClass('d-none');
+                    $('.visa-category-container').addClass('d-none');
+                    $('.visa-type-container').addClass('d-none');
+                    $('.canada-applicants-info').addClass('d-none');
+                    $('.australia-applicants-info').addClass('d-none');
+                    $('.new-zealand-applicants-info').addClass('d-none');
+                    switch (applicantType) {
+                        case 'CANADA':
+                            clientIDReferenceNumber = 'IME/UCCI #';
+                            $('.canada-applicants-info').removeClass('d-none');
+                            $('.client-id-reference-number-container').removeClass('d-none');
+                            $('.visa-category-container').removeClass('d-none');
+                            $('.visa-type-container').removeClass('d-none');
+                            break;
+                        case 'AUSTRALIA':
+                            clientIDReferenceNumber = 'HAP ID';
+                            $('.australia-applicants-info').removeClass('d-none');
+                            $('.client-id-reference-number-container').removeClass('d-none');
+                            break;
+                        case 'NEW ZEALAND':
+                            clientIDReferenceNumber = 'NZER/NZHR';
+                            $('.new-zealand-applicants-info').removeClass('d-none');
+                            $('.client-id-reference-number-container').removeClass('d-none');
+                            $('.visa-category-container').removeClass('d-none');
+                            $('.visa-type-container').removeClass('d-none');
+                            break;
+                    
+                        default:
+                            $('.client-id-reference-number-container').addClass('d-none');
+                            $('.visa-category-container').addClass('d-none');
+                            $('.visa-type-container').addClass('d-none');
+                            break;
+                    }
+                    $('label[for="client-id-reference-number"]').text(clientIDReferenceNumber);
+                    $('#applicant-type').val(applicantType);
+                    $('#client-id-reference-number').val(customer.client_id_reference_number);
+                    $('#visa-category').val(customer.visa_category);
+                    $('#visa-type').val(customer.visa_type);
+                    // END OF Custom Fields
             }
 
             $('#select-customer').trigger('click'); // Hide the list.
@@ -352,6 +408,21 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
         $('#new-customer').on('click', function () {
             $('#manage-appointment').find('#customer-id, #first-name, #last-name, #email, '
                 + '#phone-number, #address, #city, #zip-code, #customer-notes').val('');
+
+            $('input[name="sex"]').prop('checked', false);
+            $('#birth-date').val('');
+            $('#passport-number').val('');
+            $('#passport-expiry-date').val('');
+            $('.client-id-reference-number-container').addClass('d-none');
+            $('.visa-category-container').addClass('d-none');
+            $('.visa-type-container').addClass('d-none');
+            $('.canada-applicants-info').addClass('d-none');
+            $('.australia-applicants-info').addClass('d-none');
+            $('.new-zealand-applicants-info').addClass('d-none');
+            $('#applicant-type').val('');
+            $('#client-id-reference-number').val('');
+            $('#visa-category').val('');
+            $('#visa-type').val('');
         });
     }
 
