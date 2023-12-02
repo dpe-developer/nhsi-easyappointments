@@ -360,14 +360,16 @@
                             <div class="form-group">
                                 <label for="address" class="control-label">
                                     <?= lang('address') ?>
+                                    <span class="text-danger">*</span>
                                 </label>
-                                <input type="text" id="address" class="form-control" maxlength="120"/>
+                                <input type="text" id="address" class="required form-control" maxlength="120"/>
                             </div>
                             <div class="form-group">
                                 <label for="city" class="control-label">
                                     <?= lang('city') ?>
+                                    <span class="text-danger">*</span>
                                 </label>
-                                <input type="text" id="city" class="form-control" maxlength="120"/>
+                                <input type="text" id="city" class="required form-control" maxlength="120"/>
                             </div>
                             <div class="form-group">
                                 <label for="zip-code" class="control-label">
@@ -465,12 +467,12 @@
                                 </label>
                                 <input id="visa-type" class="form-control" maxlength="120"/>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group d-none">
                                 <label for="proof-of-payment">Proof of Payment</label>
-                                <input type="file" class="form-control-file required" id="proof-of-payment" accept="image/*">
+                                <input type="file" class="form-control-file" id="proof-of-payment" accept="image/*">
                             </div>
                             <div class="form-group">
-                                <label for="proof-of-identity">Proof of Identity</label>
+                                <label for="proof-of-identity">Proof of Identity <span class="text-danger">*</span></label>
                                 <input type="file" class="form-control-file required" id="proof-of-identity" accept="image/*">
                             </div>
                         </div>

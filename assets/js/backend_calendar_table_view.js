@@ -996,7 +996,13 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
             calendarEvents.push({
                 id: appointment.id,
                 title: appointment.customer.first_name + ' '
-                    + appointment.customer.last_name,
+                    + appointment.customer.last_name
+                    + ' - ' + appointment.customer.phone_number
+                    + ' - ' + appointment.customer.email
+                    + ' - ' + appointment.customer.address + (appointment.customer.city=='' ? '' : ', ' + appointment.customer.city)
+                    + ' - ' + appointment.customer.sex
+                    + ' - ' + getAge(appointment.customer.birth_date)
+                    + ' - ' + appointment.service.name,
                 start: moment(appointment.start_datetime),
                 end: moment(appointment.end_datetime),
                 allDay: false,
@@ -1507,7 +1513,7 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                     }),
 
                     $('<button/>', {
-                        'class': event.data.proof_of_payment == null ? 'd-none' : 'btn btn-sm btn-info mb-2',
+                        'class': (event.data.proof_of_payment == null || event.data.proof_of_payment == '') ? 'd-none' : 'btn btn-sm btn-info mb-2',
                         'text': 'View proof of payment',
                         'type': 'button',
                         'data-toggle': 'view-image-modal',
@@ -1516,7 +1522,7 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                     }),
                     $('<br/>'),
                     $('<button/>', {
-                        'class': event.data.proof_of_identity == null ? 'd-none' : 'btn btn-sm btn-info',
+                        'class': (event.data.proof_of_identity == null || event.data.proof_of_identity == '') ? 'd-none' : 'btn btn-sm btn-info',
                         'text': 'View proof of identity',
                         'type': 'button',
                         'data-toggle': 'view-image-modal',
@@ -1913,6 +1919,20 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                 // $('#loading').css('visibility', '');
             }
         });
+    }
+
+    /**
+     * Compute AGE
+     */
+    function getAge(birthDate) {
+        if(birthDate != undefined || birthDate != null) {
+            birthDate = new Date(birthDate);
+            var today = new Date();
+            var age = Math.floor((today-birthDate) / (365.25 * 24 * 60 * 60 * 1000));
+            return age;
+        }else{
+            return 0;
+        }
     }
 
     /**

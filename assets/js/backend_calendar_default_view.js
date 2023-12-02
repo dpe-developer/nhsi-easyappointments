@@ -781,7 +781,7 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                     }),
 
                     $('<button/>', {
-                        'class': event.data.proof_of_payment == null ? 'd-none' : 'btn btn-sm btn-info mb-2',
+                        'class': (event.data.proof_of_payment == null || event.data.proof_of_payment == '') ? 'd-none' : 'btn btn-sm btn-info mb-2',
                         'text': 'View proof of payment',
                         'type': 'button',
                         'data-toggle': 'view-image-modal',
@@ -790,7 +790,7 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                     }),
                     $('<br/>'),
                     $('<button/>', {
-                        'class': event.data.proof_of_identity == null ? 'd-none' : 'btn btn-sm btn-info',
+                        'class': (event.data.proof_of_identity == null || event.data.proof_of_identity == '') ? 'd-none' : 'btn btn-sm btn-info',
                         'text': 'View proof of identity',
                         'type': 'button',
                         'data-toggle': 'view-image-modal',

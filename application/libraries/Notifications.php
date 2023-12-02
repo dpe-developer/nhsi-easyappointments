@@ -89,9 +89,15 @@ class Notifications {
 
             if ($send_customer === TRUE)
             {
-                $email->send_appointment_details($appointment, $provider,
-                    $service, $customer, $settings, $customer_title,
-                    $customer_message, $customer_link, new Email($customer['email']), new Text($ics_stream), $customer['timezone']);
+                $email->send_appointment_details(
+                    $appointment,
+                    $provider,
+                    $service,
+                    $customer,
+                    $settings,
+                    $customer_title,
+                    $customer_message,
+                    $customer_link, new Email($customer['email']), new Text($ics_stream), $customer['timezone']);
             }
 
             $send_provider = filter_var(
