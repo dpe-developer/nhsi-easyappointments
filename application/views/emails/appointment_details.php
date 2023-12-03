@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-    <title><?= lang('appointment_details_title') ?> | Easy!Appointments</title>
+    <title><?= lang('appointment_details_title') ?></title>
 </head>
 <body style="font: 13px arial, helvetica, tahoma;">
 <div class="email-container" style="width: 650px; border: 1px solid #eee;">
@@ -39,10 +39,6 @@
                 <td class="label" style="padding: 3px;font-weight: bold;"><?= lang('start') ?></td>
                 <td style="padding: 3px;"><?= $appointment_start_date ?></td>
             </tr>
-            <!-- <tr>
-                <td class="label" style="padding: 3px;font-weight: bold;"><?= lang('end') ?></td>
-                <td style="padding: 3px;"><?= $appointment_end_date ?></td>
-            </tr> -->
             <tr>
                 <td class="label" style="padding: 3px;font-weight: bold;"><?= lang('timezone') ?></td>
                 <td style="padding: 3px;"><?= $appointment_timezone ?></td>
