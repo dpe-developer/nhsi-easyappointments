@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-    <title><?= lang('appointment_details_title') ?> | Easy!Appointments</title>
+    <title><?= lang('appointment_details_title') ?></title>
 </head>
 <body style="font: 13px arial, helvetica, tahoma;">
 <div class="email-container" style="width: 650px; border: 1px solid #eee;">
@@ -88,7 +88,7 @@
             <strong>REMINDERS:</strong>
             <br>
             <ol>
-                <li>You are required to wear SURGICAL MASK and CLEAR FULL FACE SHIELD within the clinic’s premises.</li>
+                <li>You are required to wear SURGICAL MASK and CLEAR FULL FACE SHIELD within the clinic's premises.</li>
                 <li>Please bring black ball pen, your <strong>VALID ORIGINAL PASSPORT</strong> and (referral letter for Australia visa applicants only)</li>
                 <li>Print and fill out the NHSBI form, COVID Health Checklist (for ALL visa applicants) and HIV DOH Form and consent form (15 years old and above visa applicants) at <a href="https://nhsiphilippines.com/cebucity/">cebu.nhsiphlippines.com</a> <strong>BEFORE</strong> your appointment date.</li>
                 <li><strong>Please print the appointment confirmation letter sent to you and present it upon your arrival at the clinic.</strong></li>
