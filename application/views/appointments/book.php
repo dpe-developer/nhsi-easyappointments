@@ -214,7 +214,7 @@
                                 <select id="select-provider" class="form-control"></select>
                             </div>
 
-                            <div id="service-description"></div>
+                            <div class="d-none" id="service-description"></div>
                         </div>
                     </div>
                 </div>
