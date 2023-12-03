@@ -240,7 +240,6 @@
                     <div class="row frame-content">
                         <div class="col-12">
                             <div style="padding: 20px; border: 1px solid black; margin: 20px;">
-                            
                                 <!--<p style="text-align:center">Did you make payment already? 
                                 <br>
                                 If YES, please confirm appointment request below.
@@ -248,13 +247,14 @@
                                 <br>
                                 If NOT, <a href="https://nhsiphilippines.com/baguiocity/make-an-appointment/">CLICK HERE TO UPLOAD YOUR DEPOSIT SLIP</a></p>
                                 <hr>-->
-                                <p><strong>IMPORTANT NOTICE: Do not create many online appointments for only one applicant because our system will delete multiple appointments.</strong><br><br>
-                                1. ALL BOOKINGS CREATED ARE IN PHILIPPINE TIMEZONE. TO REMIND YOU OF THIS APPOINTMENT, THE EMAIL YOU WILL RECEIVE SHOWS THE APPOINTMENT TIME SLOT IN YOUR LOCAL TIMEZONE. HOWEVER THE TIME SLOT YOU RECEIVED IS NOT FINAL, INSTEAD, IT IS JUST TO CONFIRM THE DAY,  YOU WILL RECEIVE A SEPARATE EMAIL STATING YOUR ARRIVAL TIME AT THE CLINIC, WHICH WOULD EITHER BE 7:30 AM, 11:00 AM or 3:00 PM.<br><br>
-                                2. Please make sure that you get an appointment for EACH APPLICANT (you must use a different email address for each applicant) – this online booking system is designed as a ONE-SLOT PER APPLICANT system.<br><br>
-                                3. WE DO NOT ACCEPT FOREIGN BANK TRANSFERS. WE ALSO DO NOT ACCEPT REMITTANCES FROM BOTH FOREIGN AND LOCAL MONEY TRANSFER AGENCIES. Acceptable forms of payment are (1) BDO. Please see payment methods in our main webpage.<br><br>
-                                4. ALWAYS FOLLOW INSTRUCTIONS AND RULES. ANY WILLFUL DISHONESTY MAY RENDER THE REFUSAL OF YOUR APPLICATON.<br><br>
-                                5. By using this website, you declare that all information you provided is true and correct and you also understand that any willful dishonesty may render the refusal of this application.<br><br>
-                                6. IF YOU CONTINUE TO USE THIS WEBSITE, YOU WILLFULY AGREE TO OUR TERMS, CONDITIONS, AND PRIVACY POLICY; IF YOU DO NOT AGREE, DO NOT USE THE SITE.<br>
+                                <p>
+                                    <strong>IMPORTANT NOTICE: Do not create many online appointments for only one applicant because our system will delete multiple appointments.</strong><br><br>
+                                    1. ALL BOOKINGS CREATED ARE IN PHILIPPINE TIMEZONE. TO REMIND YOU OF THIS APPOINTMENT, THE EMAIL YOU WILL RECEIVE SHOWS THE APPOINTMENT TIME SLOT IN YOUR LOCAL TIMEZONE. HOWEVER THE TIME SLOT YOU RECEIVED IS NOT FINAL, INSTEAD, IT IS JUST TO CONFIRM THE DAY,  YOU WILL RECEIVE A SEPARATE EMAIL STATING YOUR ARRIVAL TIME AT THE CLINIC, WHICH WOULD EITHER BE 7:30 AM, 11:00 AM or 3:00 PM.<br><br>
+                                    2. Please make sure that you get an appointment for EACH APPLICANT (you must use a different email address for each applicant) – this online booking system is designed as a ONE-SLOT PER APPLICANT system.<br><br>
+                                    3. WE DO NOT ACCEPT FOREIGN BANK TRANSFERS. WE ALSO DO NOT ACCEPT REMITTANCES FROM BOTH FOREIGN AND LOCAL MONEY TRANSFER AGENCIES. Acceptable forms of payment are (1) BDO. Please see payment methods in our main webpage.<br><br>
+                                    4. ALWAYS FOLLOW INSTRUCTIONS AND RULES. ANY WILLFUL DISHONESTY MAY RENDER THE REFUSAL OF YOUR APPLICATON.<br><br>
+                                    5. By using this website, you declare that all information you provided is true and correct and you also understand that any willful dishonesty may render the refusal of this application.<br><br>
+                                    6. IF YOU CONTINUE TO USE THIS WEBSITE, YOU WILLFULY AGREE TO OUR TERMS, CONDITIONS, AND PRIVACY POLICY; IF YOU DO NOT AGREE, DO NOT USE THE SITE.<br>
                                 </p>
                             </div>
                         </div>
