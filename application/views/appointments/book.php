@@ -467,7 +467,7 @@
                                 </label>
                                 <input id="visa-type" class="form-control" maxlength="120"/>
                             </div>
-                            <div class="form-group d-none">
+                            <div class="form-group">
                                 <label for="proof-of-payment">Proof of Payment</label>
                                 <input type="file" class="form-control-file" id="proof-of-payment" accept="image/*">
                             </div>
