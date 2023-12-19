@@ -108,7 +108,7 @@ class Customers_model extends EA_Model {
         // When inserting a record the email address must be unique.
         $customer_id = isset($customer['id']) ? $customer['id'] : '';
 
-        $num_rows = $this->db
+        /* $num_rows = $this->db
             ->select('*')
             ->from('users')
             ->join('roles', 'roles.id = users.id_roles', 'inner')
@@ -122,7 +122,7 @@ class Customers_model extends EA_Model {
         {
             throw new Exception('Given email address belongs to another customer record. '
                 . 'Please use a different email.');
-        }
+        } */
 
         return TRUE;
     }
@@ -152,6 +152,11 @@ class Customers_model extends EA_Model {
             ->select('*')
             ->from('users')
             ->join('roles', 'roles.id = users.id_roles', 'inner')
+            ->where('users.first_name', $customer['first_name'])
+            ->where('users.last_name', $customer['last_name'])
+            ->where('users.birth_date', $customer['birth_date'])
+            ->where('users.sex', $customer['sex'])
+            ->where('users.passport_number', $customer['passport_number'])
             ->where('users.email', $customer['email'])
             ->where('roles.slug', DB_SLUG_CUSTOMER)
             ->get()->num_rows();
