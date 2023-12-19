@@ -23,10 +23,10 @@
             <strong>The appointment time you made will only be used to reserve the day chosen.</strong> 
             <br>            
             <br>            
-            <strong>Your final arrival time at the clinic will be <span style="color:blue">either 7:30 am, 11:00 am or 2:00 pm.</span> Final confirmation of your appointment date and time will be emailed to you once you reply to this email with the attached photo of your deposit slip within 3 working days. Failure to do so will result to the cancellation of your appointment schedule.</strong>
+            <strong>Your final arrival time at the clinic will be <span style="color:blue">either 6:30am, 8am, 10am, 12nn, 1pm, or 2pm.</span> Final confirmation of your appointment date and time will be emailed to you once you reply to this email with the attached photo of your deposit slip within 3 working days. Failure to do so will result to the cancellation of your appointment schedule.</strong>
             <br>
             <br>
-            <span style="color:red">NOTE:</span> WE DO NOT ACCEPT BANK TRANSFERS. WE ALSO DO NOT ACCEPT REMITTANCES FROM BOTH FOREIGN AND LOCAL MONEY TRANSFER AGENCIES. Acceptable forms of payment are <span style="color:blue">OVER THE COUNTER DEPOSIT</span> to below bank account details:
+            <span style="color:red">NOTE:</span> WE DO NOT ACCEPT BANK TRANSFERS. WE ALSO DO NOT ACCEPT REMITTANCES FROM BOTH FOREIGN AND LOCAL MONEY TRANSFER AGENCIES. Acceptable forms of payment are <span style="color:blue">OVER THE COUNTER CASH DEPOSIT</span> to below bank account details:
             <br>
             <br>
             <strong>Banco De Oro (BDO)</strong><br>
