@@ -249,7 +249,7 @@
                                 <hr>-->
                                 <p>
                                     <strong>IMPORTANT NOTICE: Do not create many online appointments for only one applicant because our system will delete multiple appointments.</strong><br><br>
-                                    1. ALL BOOKINGS CREATED ARE AT THE PHILIPPINE TIMEZONE. TO REMIND YOU OF THIS APPOINTMENT, THE EMAIL YOU WILL RECEIVE SHOWS THE APPOINTMENT SCHEDULE IN YOUR LOCAL TIMEZONE.<br><br>
+                                    1. IF YOU ARE LOCATED ABROAD OR USING A VPN SERVICE ON YOUR DEVICE, THE TIMEZONE MAY BE AFFECTED WHILE CREATING AN APPOINTMENT, ALL ONLINE APPOINTMENTS ARE BASED ON COMPANY OPERATING HOURS IN THE PHILIPPINES. PLEASE CHECK YOUR TIMEZONES ACCORDINGLY AND VIEW OUR COMPANY OPERATING HOURS.<br><br>
                                     2. Please make sure that you get an appointment for EACH APPLICANT (you must use a different email address for each applicant) – this online booking system is designed as a ONE-SLOT PER APPLICANT system.<br><br>
                                     3. WE DO NOT ACCEPT FOREIGN BANK TRANSFERS. WE ALSO DO NOT ACCEPT REMITTANCES FROM BOTH FOREIGN AND LOCAL MONEY TRANSFER AGENCIES. Please see payment methods in our main webpage.<br><br>
                                     4. PLEASE BRING BLACK BALL PEN, PRINTED AND FILLED OUT NHSCI FORM (please download from our website cebu.nhsiphilippines.com), ORIGINAL PASSPORT for Canada visa applicants, and ORIGINAL DEPOSIT SLIP as proof of payment on your appointment date.<br><br>
