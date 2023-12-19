@@ -467,9 +467,9 @@
                                 </label>
                                 <input id="visa-type" class="form-control" maxlength="120"/>
                             </div>
-                            <div class="form-group">
-                                <label for="proof-of-payment">Proof of Payment <span class="text-danger">*</span></label>
-                                <input type="file" class="form-control-file required" id="proof-of-payment" accept="image/*">
+                            <div class="form-group d-none">
+                                <label for="proof-of-payment">Proof of Payment</label>
+                                <input type="file" class="form-control-file" id="proof-of-payment" accept="image/*">
                             </div>
                             <div class="form-group">
                                 <label for="proof-of-identity">Proof of Identity <span class="text-danger">*</span></label>
