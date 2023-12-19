@@ -248,7 +248,7 @@
                             If NOT, <a href="https://nhsiphilippines.com/baguiocity/make-an-appointment/">CLICK HERE TO UPLOAD YOUR DEPOSIT SLIP</a></p>
                             <hr>-->
                             <strong>IMPORTANT NOTICE: Do not create many online appointments for only one applicant because our system will delete multiple appointments.</strong><br><br>
-                            1. ALL BOOKINGS CREATED ARE IN PHILIPPINE TIMEZONE. TO REMIND YOU OF THIS APPOINTMENT, THE EMAIL YOU WILL RECEIVE SHOWS THE APPOINTMENT TIME SLOT IN YOUR LOCAL TIMEZONE.<br><br>
+                            1. IF YOU ARE LOCATED ABROAD OR USING A VPN SERVICE ON YOUR DEVICE, THE TIMEZONE MAY BE AFFECTED WHILE CREATING AN APPOINTMENT, ALL ONLINE APPOINTMENTS ARE BASED ON COMPANY OPERATING HOURS IN THE PHILIPPINES. PLEASE CHECK YOUR TIMEZONES ACCORDINGLY AND VIEW OUR COMPANY OPERATING HOURS.<br><br>
                             2. Please make sure that you get an appointment for EACH APPLICANT (you must use a different email address for each applicant) – this online booking system is designed as a ONE-SLOT PER APPLICANT system.<br><br>
                             3. ALWAYS FOLLOW INSTRUCTIONS AND RULES. ANY WILLFUL DISHONESTY MAY RENDER THE REFUSAL OF YOUR APPLICATON.<br><br>
                             4. By using this website, you declare that all information you provided is true and correct and you also understand that any willful dishonesty may render the refusal of this application.<br><br>
