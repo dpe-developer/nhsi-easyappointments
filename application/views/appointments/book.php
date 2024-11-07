@@ -319,12 +319,20 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="form-group" align="center">
                                 <label for="created-by" class="control-label">
-                                    Name of person creating appointment
+                                    <i>YOUR NAME</i>
                                     <span class="text-danger">*</span>
                                 </label>
                                 <input type="text" id="created-by" class="required form-control" maxlength="100"/>
+                            </div>
+                            
+                            <div class="form-group" align="center">
+                                <p>
+                                    <hr>
+                                    <i>APPLICANT DETAILS BELOW</i>
+                                    <hr>
+                                </p>
                             </div>
                             <div class="form-group">
                                 <label for="first-name" class="control-label">
@@ -570,9 +578,9 @@
             <div id="frame-footer">
                 <small>
                     <span class="footer-powered-by">
-                        Powered By
+                        Powered and Developed By
 
-                        <a href="https://easyappointments.org" target="_blank">Easy!Appointments</a>
+                        <a href="https://www.facebook.com/techniqalgroup" target="_blank">Easy!Appointments and TechniqalGroup MCS</a>
                     </span>
 
                     <span class="footer-options">
@@ -581,10 +589,10 @@
                             <?= ucfirst(config('language')) ?>
                         </span>
 
-                        <a class="backend-link badge badge-primary" href="<?= site_url('backend'); ?>">
+                        <!--<a class="backend-link badge badge-primary" href="<?= site_url('backend'); ?>">
                             <i class="fas fa-sign-in-alt mr-2"></i>
                             <?= $this->session->user_id ? lang('backend_section') : lang('login') ?>
-                        </a>
+                        </a>-->
                     </span>
                 </small>
             </div>
