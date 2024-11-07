@@ -250,12 +250,17 @@
                                 <p>
                                     <strong>IMPORTANT NOTICE: Do not create many online appointments for only one applicant because our system will delete multiple appointments.</strong><br><br>
                                     1. IF YOU ARE LOCATED ABROAD OR USING A VPN SERVICE ON YOUR DEVICE, THE TIMEZONE MAY BE AFFECTED WHILE CREATING AN APPOINTMENT, ALL ONLINE APPOINTMENTS ARE BASED ON COMPANY OPERATING HOURS IN THE PHILIPPINES. PLEASE CHECK YOUR TIMEZONES ACCORDINGLY AND VIEW OUR COMPANY OPERATING HOURS.<br><br>
-                                    2. THE TIME SLOT YOU WILL RECEIVE IS NOT FINAL, INSTEAD, IT IS JUST TO CONFIRM THE DAY OF YOUR APPOINTMENT, YOU WILL RECEIVE A SEPARATE EMAIL STATING YOUR ARRIVAL TIME AT THE CLINIC, WHICH WOULD EITHER BE 6:30am, 8am, 10am, 12nn, 1pm, or 2pm.<br><br>
-                                    3. Please make sure that you get an appointment for EACH APPLICANT (you must use a different email address for each applicant) – this online booking system is designed as a ONE-SLOT PER APPLICANT system.<br><br>
-                                    4. WE DO NOT ACCEPT FOREIGN BANK TRANSFERS. WE ALSO DO NOT ACCEPT REMITTANCES FROM BOTH FOREIGN AND LOCAL MONEY TRANSFER AGENCIES. Acceptable forms of payment are (1) BDO. Please see payment methods in our main webpage.<br><br>
-                                    5. ALWAYS FOLLOW INSTRUCTIONS AND RULES. ANY WILLFUL DISHONESTY MAY RENDER THE REFUSAL OF YOUR APPLICATON.<br><br>
-                                    6. By using this website, you declare that all information you provided is true and correct and you also understand that any willful dishonesty may render the refusal of this application.<br><br>
-                                    7. IF YOU CONTINUE TO USE THIS WEBSITE, YOU WILLFULY AGREE TO OUR TERMS, CONDITIONS, AND PRIVACY POLICY; IF YOU DO NOT AGREE, DO NOT USE THE SITE.<br>
+                                    2. Those with special needs / request you may contact us directly through:<br>
+                            		 	Call/SMS: +639271815150<br>
+		                             	Email: nationwidebaguio@yahoo.com<br><br>
+                                    3. Please make sure that you get an appointment for EACH APPLICANT.<br><br>
+                                    4. WE DO NOT ACCEPT BANK TRANSFERS. WE ALSO DO NOT ACCEPT REMITTANCES FROM BOTH FOREIGN AND LOCAL MONEY TRANSFER AGENCIES. Please visit our main webpage <a href="nhsgroup.ph/baguio.html" target="_blank">nhsgroup.ph/baguio.html</a> to view medical fees (Canada/Australia/New Zealand)<br><br>
+                                        Acceptable forms of payment - Over-the-counter Cash Deposit to below bank account details:<br>
+                                     	Banco De Oro (BDO)<br>
+                                     	Account name: NATIONWIDE HEALTH SYSTEMS INC.<br>
+                                      	Account #: 003620008692<br><br>
+                                    5. Please make sure to visit our main webpage (nhsgroup.ph/baguio.html) to view requirements and download forms (bring downloaded and completely filled out forms on your appointment date to facilitate processing)<br><br>
+                                    6. ALWAYS FOLLOW INSTRUCTIONS AND RULES. ANY WILLFUL DISHONESTY MAY RENDER THE REFUSAL OF YOUR APPLICATON. IF YOU CONTINUE TO USE THIS WEBSITE, YOU DECLARE THAT ALL INFORMATION YOU PROVIDED IS TRUE AND CORRECT AND THAT YOU WILLFULY AGREE TO OUR TERMS, CONDITIONS, AND PRIVACY POLICY; IF YOU DO NOT AGREE, DO NOT USE THE SITE.<br><br>
                                 </p>
                             </div>
                         </div>
@@ -322,13 +327,22 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="form-group" align="center">
                                 <label for="created-by" class="control-label">
-                                    Name of person creating appointment
+                                    <i>YOUR NAME</i>
                                     <span class="text-danger">*</span>
                                 </label>
                                 <input type="text" id="created-by" class="required form-control" maxlength="100"/>
                             </div>
+                            
+                            <div class="form-group" align="center">
+                                <p>
+                                    <hr>
+                                    <i>APPLICANT DETAILS BELOW</i>
+                                    <hr>
+                                </p>
+                            </div>
+                            
                             <div class="form-group">
                                 <label for="first-name" class="control-label">
                                     <?= lang('first_name') ?>
@@ -573,9 +587,9 @@
             <div id="frame-footer">
                 <small>
                     <span class="footer-powered-by">
-                        Powered By
+                        Powered and Developed By
 
-                        <a href="https://easyappointments.org" target="_blank">Easy!Appointments</a>
+                        <a href="https://www.facebook.com/techniqalgroup" target="_blank">Easy!Appointments and TechniqalGroup MCS</a>
                     </span>
 
                     <span class="footer-options">
@@ -584,10 +598,10 @@
                             <?= ucfirst(config('language')) ?>
                         </span>
 
-                        <a class="backend-link badge badge-primary" href="<?= site_url('backend'); ?>">
+                        <!--<a class="backend-link badge badge-primary" href="<?= site_url('backend'); ?>">
                             <i class="fas fa-sign-in-alt mr-2"></i>
                             <?= $this->session->user_id ? lang('backend_section') : lang('login') ?>
-                        </a>
+                        </a>-->
                     </span>
                 </small>
             </div>
