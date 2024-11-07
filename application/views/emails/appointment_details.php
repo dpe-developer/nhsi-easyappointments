@@ -15,6 +15,7 @@
         <p><?= $email_message ?></p>
 
         <h2><?= lang('appointment_link_title') ?></h2>
+        <p><?= lang('appointment_link_description') ?></p>
         <a href="<?= $appointment_link ?>" style="width: 600px;"><?= $appointment_link ?></a>
 
         <h2><?= lang('appointment_details_title') ?></h2>
@@ -30,7 +31,7 @@
             <tr>
                 <td class="label" style="padding: 3px;font-weight: bold;">NOTE</td>
                 <td style="padding: 3px;">
-                    <strong>Your appointment schedule is in PHILIPPINE TIME.<br>The 'Start' time shown below is shown in YOUR LOCAL TIMEZONE (Please convert the 'Start' time shown below to PHILIPPINE TIMEZONE to view your appointment schedule in PHILIPPINE TIME and avoid confusion)</strong>
+                    <strong>Your appointment schedule is in PHILIPPINE TIME.<br>The 'CALL TIME' time shown below is shown in YOUR LOCAL TIMEZONE. The applicant must follow Philippine Timezone.</strong>
                 </td>
             </tr>
             <tr>
@@ -72,6 +73,12 @@
         </table>
         <!-- Custom info -->
         <h2>Please read carefully</h2>
+            <div>
+                <hr>
+                    <h3>Notice: WE MOVED TO A NEW LOCATION</h3><br>
+                        <a href="https://maps.app.goo.gl/zTeirtDDATrLtL3m8">We are located at TANGO PLAZA BLDG., QUEENS ROAD, BRGY. KAMPUTHAW, CEBU CITY, CEBU PHILIPPINES 6000 (landmark: across REDEMPTORIST CHURCH). Click here to view on location on Google Maps</a>
+                <hr>
+            </div>
         <p>
             Dear <?= $customer_name ?> &nbsp;, 
             <br>
@@ -88,15 +95,17 @@
             <strong>REMINDERS:</strong>
             <br>
             <ol>
-                <li>You are required to wear SURGICAL MASK and CLEAR FULL FACE SHIELD within the clinic's premises.</li>
-                <li>Please bring black ball pen, your <strong>VALID ORIGINAL PASSPORT</strong> and (referral letter for Australia visa applicants only)</li>
-                <li>Print and fill out the NHSBI form, COVID Health Checklist (for ALL visa applicants) and HIV DOH Form and consent form (15 years old and above visa applicants) at <a href="https://nhsiphilippines.com/cebucity/">cebu.nhsiphlippines.com</a> <strong>BEFORE</strong> your appointment date.</li>
+                <li>You are required to wear MASK within the clinic's premises.</li>
+                <li>Bring 1 photocopy of passport</li>
+                <li>Bring 1 photocopy of covid vaccine card or certificate (1st, 2nd, and booster dose)</li>
+                <li>Bring black ball pen, your <strong>VALID ORIGINAL PASSPORT</strong> and (referral letter for Australia visa applicants only)</li>
+                <li>Print and fill out the NHSCI form, COVID Health Checklist (for ALL visa applicants) and HIV DOH Form and consent form (15 years old and above visa applicants) at <a href="https://nhsgroup.ph/cebu.html">https://nhsgroup.ph/cebu.html</a> <strong>BEFORE</strong> your appointment date.</li>
                 <li><strong>Please print the appointment confirmation letter sent to you and present it upon your arrival at the clinic.</strong></li>
                 <li>We accept cash payments.</li>
-                <li>Please make sure to visit our website <a href="https://nhsiphilippines.com/">nhsiphilippines.com</a> and make sure to deposit the correct payment for your medical examination service.</li>
+                <li>Please make sure to visit our website <a href="https://nhsgroup.ph/cebu.html">https://nhsgroup.ph/cebu.html</a> and make sure to deposit the correct payment for your medical examination service.</li>
                 <li>Laboratory tests are NON- FASTING.</li>
                 <li>For New Zealand applicants, females within the reproductive age group are advised not to schedule their medical examination during their menstrual period. Otherwise, you will be required to come back one week after the last day of their menstruation.</li>
-                <li>Companions will not be allowed inside the clinic, and we therefore strongly discourage clients from bringing one. (For elderly and PWDs who will need to be accompanied, please inform us beforehand so arrangements can be made.)</li>
+                <li>Companions will not be allowed inside the clinic and we  strongly discourage all applicants from bringing one. (For elderly and PWDs who will need to be accompanied, please inform us beforehand so arrangements can be made.)</li>
             </ol>
         </p>
         <!-- END OF Custom info -->

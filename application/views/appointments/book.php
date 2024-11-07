@@ -250,11 +250,11 @@
                                 <p>
                                     <strong>IMPORTANT NOTICE: Do not create many online appointments for only one applicant because our system will delete multiple appointments.</strong><br><br>
                                     1. IF YOU ARE LOCATED ABROAD OR USING A VPN SERVICE ON YOUR DEVICE, THE TIMEZONE MAY BE AFFECTED WHILE CREATING AN APPOINTMENT, ALL ONLINE APPOINTMENTS ARE BASED ON COMPANY OPERATING HOURS IN THE PHILIPPINES. PLEASE CHECK YOUR TIMEZONES ACCORDINGLY AND VIEW OUR COMPANY OPERATING HOURS.<br><br>
-                                    2. Please make sure that you get an appointment for EACH APPLICANT (you must use a different email address for each applicant) – this online booking system is designed as a ONE-SLOT PER APPLICANT system.<br><br>
+                                    2. Please make sure that you get an appointment for EACH APPLICANT – this online booking system is designed as a ONE-SLOT PER APPLICANT system.<br><br>
                                     3. WE DO NOT ACCEPT FOREIGN BANK TRANSFERS. WE ALSO DO NOT ACCEPT REMITTANCES FROM BOTH FOREIGN AND LOCAL MONEY TRANSFER AGENCIES. Please see payment methods in our main webpage.<br><br>
-                                    4. PLEASE BRING BLACK BALL PEN, PRINTED AND FILLED OUT NHSCI FORM (please download from our website cebu.nhsiphilippines.com), ORIGINAL PASSPORT for Canada visa applicants, and ORIGINAL DEPOSIT SLIP as proof of payment on your appointment date.<br><br>
+                                    4. PLEASE BRING BLACK BALL PEN, PRINTED AND FILLED OUT NHSCI FORM (please download from our website https://nhsgroup.ph/cebu.html), ORIGINAL PASSPORT for Canada visa applicants, and ORIGINAL DEPOSIT SLIP as proof of payment on your appointment date.<br><br>
                                     5. By using this website, you declare that all information you provided is true and correct and you also understand that any willful dishonesty may render the refusal of this application.<br><br>
-                                    6. IF YOU CONTINUE TO USE THIS WEBSITE, YOU WILLFULY AGREE TO OUR TERMS, CONDITIONS, AND PRIVACY POLICY; IF YOU DO NOT AGREE, DO NOT USE THE SITE.<br>
+                                    6. IF YOU CONTINUE TO USE THIS WEBSITE, YOU WILLFULY AGREE TO OUR TERMS, CONDITIONS, AND PRIVACY POLICY; IF YOU DO NOT AGREE, DO NOT USE THIS WEBSITE.<br>
                                 </p>
                             </div>
                         </div>
@@ -321,12 +321,20 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="form-group" align="center">
                                 <label for="created-by" class="control-label">
-                                    Name of person creating appointment
+                                    <i>YOUR NAME</i>
                                     <span class="text-danger">*</span>
                                 </label>
                                 <input type="text" id="created-by" class="required form-control" maxlength="100"/>
+                            </div>
+                            
+                            <div class="form-group" align="center">
+                                <p>
+                                    <hr>
+                                    <i>APPLICANT DETAILS BELOW</i>
+                                    <hr>
+                                </p>
                             </div>
                             <div class="form-group">
                                 <label for="first-name" class="control-label">
@@ -467,7 +475,8 @@
                                 </label>
                                 <input id="visa-type" class="form-control" maxlength="120"/>
                             </div>
-                            <div class="form-group">
+                            <!-- cash basis only for now as proof of payment requested by nhsi-->
+                            <div class="form-group" style="display:none">
                                 <label for="proof-of-payment">Proof of Payment</label>
                                 <input type="file" class="form-control-file" id="proof-of-payment" accept="image/*">
                             </div>
@@ -572,9 +581,9 @@
             <div id="frame-footer">
                 <small>
                     <span class="footer-powered-by">
-                        Powered By
+                        Powered and Developed By
 
-                        <a href="https://easyappointments.org" target="_blank">Easy!Appointments</a>
+                        <a href="https://www.facebook.com/techniqalgroup" target="_blank">Easy!Appointments and TechniqalGroup MCS</a>
                     </span>
 
                     <span class="footer-options">
@@ -583,10 +592,10 @@
                             <?= ucfirst(config('language')) ?>
                         </span>
 
-                        <a class="backend-link badge badge-primary" href="<?= site_url('backend'); ?>">
+                        <!--<a class="backend-link badge badge-primary" href="<?= site_url('backend'); ?>">
                             <i class="fas fa-sign-in-alt mr-2"></i>
                             <?= $this->session->user_id ? lang('backend_section') : lang('login') ?>
-                        </a>
+                        </a>-->
                     </span>
                 </small>
             </div>
